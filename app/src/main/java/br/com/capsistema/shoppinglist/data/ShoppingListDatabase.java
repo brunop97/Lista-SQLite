@@ -61,7 +61,6 @@ public abstract class ShoppingListDatabase extends RoomDatabase {
                                 @Override
                                 public void onOpen(@NonNull SupportSQLiteDatabase db) {
                                     super.onOpen(db);
-                                    dbExecutor.execute(() -> prepopulate(context));
                                 }
                             })
                             .fallbackToDestructiveMigration()
@@ -71,62 +70,4 @@ public abstract class ShoppingListDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
-
-    private static void prepopulate(Context context) {
-        // Obtener instancias de Daos
-        ShoppingListDao shoppingListDao = INSTANCE.shoppingListDao();
-        ItemDao itemDao = INSTANCE.itemDao();
-        ShoppingListItemDao shoppingListItemDao = INSTANCE.shoppingListItemDao();
-
-        List<ShoppingListInsert> lists = new ArrayList<>();
-        List<Info> infos = new ArrayList<>();
-        List<Colaborador> colaboradors = new ArrayList<>();
-        List<Item> items = new ArrayList<>();
-        List<ShoppingListItem> shoppingListItems = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-
-            String dummyId = String.valueOf((i + 1));
-
-            // Crear lista de compras
-            ShoppingListInsert shoppingList = new ShoppingListInsert(
-                    dummyId,
-                    "Lista " + (i + 1)
-            );
-
-            // Crear info
-            String date = Utils.getCurrentDate();
-            Info info = new Info(
-                    shoppingList.id, date, date);
-
-            // Crear colaborador
-            Colaborador colaborador = new Colaborador(dummyId,
-                    "Colaborador " + dummyId, dummyId);
-
-            // Crear ítems de la lista
-            for (int j = 0; j < 5; j++) {
-                Item item = new Item(dummyId + (j + 1), "Item #" + (j + 1));
-
-                // Crear filas de "lista <contiene> item"
-                ShoppingListItem shoppingListItem = new ShoppingListItem(shoppingList.id, item.id);
-
-                items.add(item);
-                shoppingListItems.add(shoppingListItem);
-            }
-
-            lists.add(shoppingList);
-            infos.add(info);
-            colaboradors.add(colaborador);
-
-        }
-
-
-        // Crear transacción para llamar DAOs
-        getInstance(context).runInTransaction(() -> {
-            shoppingListDao.insertAllWithInfosAndCollaborators(lists, infos, colaboradors);
-            itemDao.insertAll(items);
-            shoppingListItemDao.insertAll(shoppingListItems);
-        });
-    }
-
 }

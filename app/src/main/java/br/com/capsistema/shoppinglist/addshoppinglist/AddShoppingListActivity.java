@@ -32,21 +32,20 @@ public class AddShoppingListActivity extends AppCompatActivity {
     private void setupCreateButton(ShoppingListViewModel vm) {
         findViewById(R.id.create_button).setOnClickListener(
                 view -> {
-                    // Obtener valor del campo de texto
+                    // Obter valor do campo de texto
                     EditText nameField = findViewById(R.id.name_field);
                     String name = nameField.getText().toString();
 
-                    // Ignorar acción si hay 0 caracteres
+                    // Desconsiderar trigger se houver 0 caracteres
                     if (name.isEmpty()) {
                         return;
                     }
 
-                    // Crear entidad y guardarla
+                    // Criar entidade e guardar no banco de dados
                     String id = UUID.randomUUID().toString();
                     ShoppingListInsert shoppingList = new ShoppingListInsert(id, name);
                     vm.insert(shoppingList);
 
-                    // Ir a la lista
                     finish();
                 });
     }
