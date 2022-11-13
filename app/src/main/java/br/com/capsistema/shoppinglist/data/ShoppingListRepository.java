@@ -55,19 +55,19 @@ public class ShoppingListRepository {
 
     private void processInsert(ShoppingListInsert shoppingList, Info info,
                                List<Colaborador> colaboradors, List<Item> items) {
-        // Insertar lista de compras
+        // Inserir lista de compras
         mShoppingListDao.insertWithInfoAndCollaborators(shoppingList, info, colaboradors);
 
-        // Insertar items
+        // Inserir items
         mItemDao.insertAll(items);
 
-        // Generar registros de relación
+        // Gerar registros de relação
         List<ShoppingListItem> shoppingListItems = new ArrayList<>();
         for (Item item : items) {
             shoppingListItems.add(new ShoppingListItem(shoppingList.id, item.id));
         }
 
-        // Insertar registros de relación
+        // Inserir registros de relação
         mShoppingListItemDao.insertAll(shoppingListItems);
     }
 

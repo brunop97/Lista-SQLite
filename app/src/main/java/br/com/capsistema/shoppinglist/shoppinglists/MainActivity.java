@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mFilters.add(findViewById(R.id.filter_2));
         mFilters.add(findViewById(R.id.filter_3));
 
-        // Definir escucha de filtros
+        // Definir listener de filtro
         CompoundButton.OnCheckedChangeListener listener = (compoundButton, checked) -> {
             String category = compoundButton.getText().toString();
             if (checked) {
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        // Setear escucha
+        // Definir listener
         for (CheckBox filter : mFilters) {
             filter.setOnCheckedChangeListener(listener);
         }
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new ShoppingListAdapter();
         mList.setAdapter(mAdapter);
 
-        // Asignar escucha de ítems
+        // Atribuir listener de item
         mAdapter.setItemListener(new ShoppingListAdapter.ItemListener() {
             @Override
             public void onClick(ShoppingListWithCollaborators shoppingList) {
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Observar cambios de listas de compras
+        // Observar mudanças nas listas de compras
         mViewModel.getShoppingLists().observe(this, mAdapter::setItems);
     }
 

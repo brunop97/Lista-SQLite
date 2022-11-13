@@ -40,7 +40,7 @@ public class ShoppingListViewModel extends AndroidViewModel {
         super(application);
         mRepository = new ShoppingListRepository(application);
 
-        // Obtener listas de compras por categorías
+        // Obter listas de compras por categorias
         mShoppingLists = Transformations.switchMap(
                 mCategories,
                 categories -> {
@@ -69,11 +69,21 @@ public class ShoppingListViewModel extends AndroidViewModel {
         collaborators.add(colaborador);
 
         // Preparar items
-        Item item = new Item(itemId, "Exemplo");
+
         List<Item> items = new ArrayList<>();
+
+        Item item = new Item(itemId, "Exemplo1");
         items.add(item);
 
-        // Insertar en repositorio
+        itemId = UUID.randomUUID().toString();
+        item = new Item(itemId, "Exemplo2");
+        items.add(item);
+
+        itemId = UUID.randomUUID().toString();
+        item = new Item(itemId, "Exemplo3");
+        items.add(item);
+
+        // Inserir no repositorio
         mRepository.insert(shoppingList, info, collaborators, items);
     }
 

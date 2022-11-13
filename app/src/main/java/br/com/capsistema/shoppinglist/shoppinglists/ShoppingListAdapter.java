@@ -76,7 +76,7 @@ public class ShoppingListAdapter
             mCollaboratorsText = itemView.findViewById(R.id.collaborator_names);
             mItemsCount = itemView.findViewById(R.id.items_count);
 
-            // Setear eventos
+            // Definir eventos
             mFavoriteButton.setOnClickListener(this::manageEvents);
             mDeleteButton.setOnClickListener(this::manageEvents);
             itemView.setOnClickListener(this::manageEvents);
@@ -86,7 +86,7 @@ public class ShoppingListAdapter
             if (mItemListener != null) {
                 ShoppingListWithCollaborators clickedItem = mShoppingLists.get(getAdapterPosition());
 
-                // Manejar evento de click en Favorito
+                // Manipular evento de clique em Favorito
                 if (view.getId() == R.id.favorite_button) {
                     mItemListener.onFavoriteIconClicked(clickedItem);
                     return;
