@@ -23,14 +23,6 @@
         <activity android:name=".addshoppinglist.AddShoppingListActivity" />
 
         <activity
-            android:name=".additemslist.AddItemsListActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
             android:name=".editshoppinglist.EditShoppingListActivity"
             android:exported="false">
             <meta-data

@@ -2,7 +2,10 @@ package br.com.capsistema.shoppinglist.data.partialentities;
 
 import androidx.room.ColumnInfo;
 
+import java.util.List;
 import java.util.Random;
+
+import br.com.capsistema.shoppinglist.data.entities.Item;
 
 public class ShoppingListInsert {
     @ColumnInfo(name = "shopping_list_id")

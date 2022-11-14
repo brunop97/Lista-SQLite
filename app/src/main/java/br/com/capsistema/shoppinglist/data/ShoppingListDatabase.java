@@ -35,7 +35,7 @@ import java.util.concurrent.Executors;
         version = 7, exportSchema = false)
 public abstract class ShoppingListDatabase extends RoomDatabase {
 
-    // Exposición de DAOs
+    // Exposição DAO
     public abstract ShoppingListDao shoppingListDao();
 
     public abstract ItemDao itemDao();

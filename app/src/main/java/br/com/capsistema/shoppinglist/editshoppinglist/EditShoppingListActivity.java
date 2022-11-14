@@ -3,7 +3,6 @@ package br.com.capsistema.shoppinglist.editshoppinglist;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import br.com.capsistema.shoppinglist.R;
-import br.com.capsistema.shoppinglist.additemslist.AddItemsListActivity;
 
 public class EditShoppingListActivity extends AppCompatActivity {
 
@@ -67,10 +65,5 @@ public class EditShoppingListActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
-
-    public  void botaoAddItemOnClick (View v){
-        Intent telaAddItem = new Intent(this, AddItemsListActivity.class);
-        startActivity(telaAddItem);
     }
 }

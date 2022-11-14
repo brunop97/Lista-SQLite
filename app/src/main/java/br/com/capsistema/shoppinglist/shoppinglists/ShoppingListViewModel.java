@@ -53,10 +53,9 @@ public class ShoppingListViewModel extends AndroidViewModel {
         );
     }
 
-    public void insert(ShoppingListInsert shoppingList) {
+    public void insert(ShoppingListInsert shoppingList, String arroz1, String leite1, String carne1, String feijao1, String refri1) {
         String infoCreatedDate = Utils.getCurrentDate();
         String colaboratorId = UUID.randomUUID().toString();
-        String itemId = UUID.randomUUID().toString();
 
         // Preparar info
         Info info = new Info(shoppingList.id,
@@ -69,19 +68,27 @@ public class ShoppingListViewModel extends AndroidViewModel {
         collaborators.add(colaborador);
 
         // Preparar items
-
         List<Item> items = new ArrayList<>();
-
-        Item item = new Item(itemId, "Exemplo1");
-        items.add(item);
-
-        itemId = UUID.randomUUID().toString();
-        item = new Item(itemId, "Exemplo2");
-        items.add(item);
-
-        itemId = UUID.randomUUID().toString();
-        item = new Item(itemId, "Exemplo3");
-        items.add(item);
+        if(!arroz1.isEmpty()) {
+            Item item = new Item(UUID.randomUUID().toString(), arroz1);
+            items.add(item);
+        }
+        if(!leite1.isEmpty()) {
+            Item item = new Item(UUID.randomUUID().toString(), leite1);
+            items.add(item);
+        }
+        if(!carne1.isEmpty()) {
+            Item item = new Item(UUID.randomUUID().toString(), carne1);
+            items.add(item);
+        }
+        if(!feijao1.isEmpty()) {
+            Item item = new Item(UUID.randomUUID().toString(), feijao1);
+            items.add(item);
+        }
+        if(!refri1.isEmpty()) {
+            Item item = new Item(UUID.randomUUID().toString(), refri1);
+            items.add(item);
+        }
 
         // Inserir no repositorio
         mRepository.insert(shoppingList, info, collaborators, items);
